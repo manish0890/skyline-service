@@ -1,8 +1,9 @@
 # skyline-service
 
-Skyline Hotel Management System Backend
+Skyline Hotel Management System Backend   
 
-More goodies coming up.....
+https://manish0890.github.io/skyline-service/   
+More goodies coming up.....   
 
 ### Guidelines for markdown
 ```markdown

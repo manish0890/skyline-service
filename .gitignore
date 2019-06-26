@@ -27,3 +27,6 @@ hs_err_pid*
 
 # intellij Idea
 *.idea/
+
+# Generated files
+target/
