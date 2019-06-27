@@ -23,7 +23,7 @@ public class CustomerService {
 
     public Customer create(Customer customer){
         Assert.notNull(customer, "While creation customer cannot be null");
-        Assert.isTrue(StringUtils.isEmpty(customer.getId()), "While creating Customer, id should be empty but received " + customer.getId());
+        Assert.isTrue(StringUtils.isEmpty(customer.getId()), "While creating Customer, id should be empty but received: " + customer.getId());
 
         return customerRepository.save(customer);
     }

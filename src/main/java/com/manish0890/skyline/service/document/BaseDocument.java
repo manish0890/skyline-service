@@ -3,7 +3,6 @@ package com.manish0890.skyline.service.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Null;
 import java.util.Date;
 
 @Document
@@ -11,10 +10,8 @@ public abstract class BaseDocument {
     @Id
     private String id;
 
-    @Null(message = "createdDate has to be null!")
     private Date createdDate;
 
-    @Null(message = "updatedDate has to be null!")
     private Date updatedDate;
 
     public String getId() {
