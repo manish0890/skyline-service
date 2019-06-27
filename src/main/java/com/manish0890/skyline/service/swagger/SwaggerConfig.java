@@ -1,5 +1,6 @@
 package com.manish0890.skyline.service.swagger;
 
+import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -24,7 +25,7 @@ public class SwaggerConfig {
                 .groupName("Information")
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
+                .paths(Predicates.not(PathSelectors.regex("/error.*")))//<6>, regex must be in double quotes.
                 .build()
                 .produces(Sets.newHashSet(MediaType.APPLICATION_JSON.toString()))
                 .consumes(Sets.newHashSet(MediaType.APPLICATION_JSON.toString()))
