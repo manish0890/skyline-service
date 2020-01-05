@@ -1,8 +1,17 @@
 # skyline-service
 
-Skyline Hotel Management System Backend
+Skyline Hotel Management System Backend   
 
-More goodies coming up.....
+https://manish0890.github.io/skyline-service/   
+More goodies coming up.....   
+
+To run the RESTful services:
+```
+mvn spring-boot:run
+```
+
+Once the application is running the REST documentation and tester is available via Swagger at 
+[http://localhost:8080/api/v1/skyline/swaggerui.html](http://localhost:8080/api/v1/smash-v2/swaggerui.html)
 
 ### Guidelines for markdown
 ```markdown
