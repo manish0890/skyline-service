@@ -1,7 +1,7 @@
 package com.manish0890.skyline.service.controller;
 
 import com.manish0890.skyline.service.document.Customer;
-import com.manish0890.skyline.service.service.CustomerService;
+import com.manish0890.skyline.service.service.ICustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,10 @@ import java.net.URI;
 @RestController
 public class CustomerController {
 
-    private static final String CLASS_NAME = "CustomerController";
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    private CustomerService customerService;
+    private ICustomerService customerService;
 
     @PostMapping(value = "/customer")
     public ResponseEntity<Void> createCustomer(@Validated @RequestBody Customer customer){
@@ -33,6 +32,7 @@ public class CustomerController {
                 .buildAndExpand(createdCustomer.getId())
                 .toUri();
 
+        LOGGER.info("Returned Customer with Id: {}", customer.getId());
         return ResponseEntity
                 .created(uri)
                 .build();
