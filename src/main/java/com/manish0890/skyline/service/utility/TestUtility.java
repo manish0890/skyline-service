@@ -1,5 +1,6 @@
 package com.manish0890.skyline.service.utility;
 
+import com.manish0890.skyline.service.document.Customer;
 import com.manish0890.skyline.service.document.dto.ErrorDetail;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.http.HttpMethod;
@@ -105,6 +106,17 @@ public class TestUtility {
         errorDetail.setTimestamp(randomDate().toString());
         return errorDetail;
     }
+
+    public static Customer customerWithTestValues(){
+        Customer customer = new Customer();
+        customer.setName(randomAlphabetic());
+        customer.setCity(randomAlphabetic());
+        customer.setDob(randomDate());
+        customer.setZipcode(randomNumeric(5));
+        customer.setPhone(randomNumeric(10));
+        return customer;
+    }
+
 
     /*
      * Retrieve enum values without the @Deprecated annotation
