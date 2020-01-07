@@ -1,13 +1,40 @@
 # skyline-service
 
-Skyline Hotel Management System Backend   
+Skyline Hotel Management System Backend (RESTful service)    
 
 https://manish0890.github.io/skyline-service/   
 More goodies coming up.....   
 
-To run the RESTful services:
+### System Requirements
+- Unix based system
+- Java 12
+- Docker
+
+### Scripts/Commands to run application
+
+Start Local MongoDB Repository
+```bash
+./bin/docker-run-mongodb.sh
 ```
-mvn spring-boot:run
+
+Pull project dependencies 
+```bash
+mvn clean install -DskipTests=true
+```
+
+Run Unit Tests
+```bash
+mvn clean test
+```
+
+Run Integration Tests
+```bash
+mvn clean -P integration-test test
+```
+
+Start Application
+```bash
+mvn clean spring-boot:run
 ```
 
 Once the application is running the REST documentation and tester is available via Swagger at 
