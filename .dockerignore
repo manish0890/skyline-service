@@ -11,7 +11,7 @@ _config.yml
 **/.DS_Store
 **/.git
 **/.gitignore
-bin
+.circleci
 
 # Temporary log files
 **/*.log
