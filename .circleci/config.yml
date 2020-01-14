@@ -35,11 +35,12 @@ jobs:
     docker:
       - image: docker:19-git
     environment:
+      # env variables are not resolving in environment for some reason!
       IMAGE_NAME: ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
     steps:
       # allocate a new Docker Engine to execute the docker commands
       - setup_remote_docker
-      - run: docker build -t ${IMAGE_NAME}:latest -t ${IMAGE_NAME}:$CIRCLE_SHA1 .
+      - run: docker build -t ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:latest -t ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
 
 # define the workflow of jobs
 workflows:
