@@ -1,0 +1,60 @@
+# Java Maven CircleCI 2.0 configuration file
+version: 2.1
+
+# a collection of CI Jobs
+jobs:
+
+  # name of a Job
+  Unit-Tests:
+    working_directory: ~/skyline-service
+    # run all the following steps with docker
+    docker:
+      # Use this a base image. All steps will execute in it
+      - image: circleci/openjdk:13.0-buster
+    # list all the steps that are required to complete this job
+    steps:
+      # check out source code to working directory
+      - checkout
+      # execute maven command
+      - run: mvn test
+
+  Integration-Tests:
+    working_directory: ~/skyline-service
+    docker:
+      - image: circleci/openjdk:13.0-buster
+      - image: mongo:4.0
+        environment:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: example
+    steps:
+      - checkout
+      - run: mvn -P test-it test
+
+  Build:
+    working_directory: ~/skyline-service
+    docker:
+      - image: docker:19-git
+    environment:
+      # env variables are not resolving in environment for some reason!
+      IMAGE_NAME: ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
+    steps:
+      # check out source code to working directory
+      - checkout
+      # allocate a new Docker Engine to execute the docker commands
+      - setup_remote_docker
+      - run: docker build -t ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:latest -t ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
+
+# define the workflow of jobs
+workflows:
+  version: 2
+  # name of a workflow
+  Build_Workflow:
+    jobs:
+      # unit tests and integration tests jobs will start first and run in parallel
+      - Unit-Tests
+      - Integration-Tests
+      - Build:
+          # build job requires following jobs to be passed
+          requires:
+            - Unit-Tests
+            - Integration-Tests
