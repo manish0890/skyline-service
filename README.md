@@ -40,7 +40,7 @@ mvn clean spring-boot:run
 Once the application is running the REST documentation and tester is available via Swagger at 
 [http://localhost:8090/api/v1/skyline/swagger-ui.html](http://localhost:8090/api/v1/skyline/swagger-ui.html)
 
-### Guidelines for markdown
+### Guidelines for markdown -
 ```markdown
 Syntax highlighted code block
 
